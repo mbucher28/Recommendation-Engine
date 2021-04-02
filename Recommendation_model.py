@@ -2,7 +2,7 @@
 """
 Created on Fri Apr  2 15:29:52 2021
 
-@author: User
+@author: mbucher
 """
 
 import numpy as np
@@ -16,17 +16,10 @@ from sklearn.decomposition import TruncatedSVD
 class Model:
 
  
-
     def __init__(self):
 
-        pass
-
- 
-
-# In[31]:
-
- 
-
+        self.data=pd.read_excel('datafile')
+        self.clean()
  
 
     def model_prep(self, dataset):
@@ -38,18 +31,16 @@ class Model:
         return X
 
  
-
     def model_run(self, X):
 
         SVD = TruncatedSVD(n_components=5)
 
         decomposed_matrix = SVD.fit_transform(X)
 
-        self.correlation_matrix = np.corrcoef(decomposed_matrix)
+        correlation_matrix = np.corrcoef(decomposed_matrix)
+        
+        return correlation_matrix
 
-       
-
- 
 
     def clean(self):
 
@@ -60,6 +51,5 @@ class Model:
         self.data_output = self.model_run(self.data_prep)
 
       
- 
 
     def get_recommendations(self, i, reg):
