@@ -24,22 +24,16 @@ class Model:
 
     def model_prep(self, dataset):
 
-        utility_matrix = dataset.pivot_table(values=, index=, columns=, fill_value=0)
-
-        X = utility_matrix.T
+        #instantiate model and prepare data for model
 
         return X
 
  
     def model_run(self, X):
-
-        SVD = TruncatedSVD(n_components=5)
-
-        decomposed_matrix = SVD.fit_transform(X)
-
-        correlation_matrix = np.corrcoef(decomposed_matrix)
+        #Train model with prepared data
         
-        return correlation_matrix
+        
+        return model_output
 
 
     def clean(self):
@@ -48,8 +42,10 @@ class Model:
 
         self.data_prep = self.model_prep(self.data)
 
-        self.data_output = self.model_run(self.data_prep)
+        self.model_output = self.model_run(self.data_prep)
 
       
 
     def get_recommendations(self, i, reg):
+        #Feed input from GUI into trained model
+        #Create output in desired  format
